@@ -26,22 +26,22 @@ void display(vector<int> set)
     cout << "\n";
 }
 
-vector<int> prime_sum(int total , int N , int S , int index , vector<int> set , vector<int> primes)
+void prime_sum(int total , int N , int S , int index , vector<int> set , vector<int> primes)
 {
     if (total == S && set.size() == N)
     {
         display(set);
-        return set;
+        return;
     }
 
     if (total > S || index == primes.size())
-        return set;
+        return;
 
     set.push_back(primes[index]);
-    set = prime_sum(total + primes[index] , N , S , index + 1 , set , primes);
+    prime_sum(total + primes[index] , N , S , index + 1 , set , primes);
     set.pop_back();
-    set = prime_sum(total , N , S , index + 1 , set , primes);
-    return set;
+    prime_sum(total , N , S , index + 1 , set , primes);
+    return;
 }
 
 void calculate_primes(int S , int N , int P)
